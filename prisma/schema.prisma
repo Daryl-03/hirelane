@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String   @id @default(cuid())
+  email            String   @unique
+  passwordHash     String   @map("password_hash")
+  subscriptionTier String   @default("FREE") @map("subscription_tier") // FREE or PAID
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  // Relationships
+  cvs          CV[]
+  applications Application[]
+  quotaUsage   QuotaUsage[]
+
+  @@map("users")
+}
+
+model CV {
+  id            String   @id @default(cuid())
+  userId        String   @map("user_id")
+  extractedData Json     @map("extracted_data") // Stores JSON with name, email, skills, experience, etc.
+  lastUpdated   DateTime @updatedAt @map("last_updated")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  // Relationships
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  applications Application[]
+
+  @@map("cvs")
+}
+
+model Application {
+  id                String   @id @default(cuid())
+  userId            String   @map("user_id")
+  cvId              String?  @map("cv_id")
+  jobUrl            String   @map("job_url")
+  jobDescription    String   @map("job_description")
+  adaptedCVLaTeX    String   @map("adapted_cv_latex")
+  coverLetterLaTeX  String   @map("cover_letter_latex")
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  // Relationships
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cv   CV?  @relation(fields: [cvId], references: [id], onDelete: SetNull)
+
+  @@map("applications")
+}
+
+model QuotaUsage {
+  id                      String @id @default(cuid())
+  userId                  String @map("user_id")
+  applicationsUsedThisMonth Int   @default(0) @map("applications_used_this_month")
+  subscriptionTier        String @map("subscription_tier") // FREE or PAID
+  monthYear               String @map("month_year") // Format: "2024-03"
+
+  // Relationships
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, monthYear])
+  @@map("quota_usage")
+}
