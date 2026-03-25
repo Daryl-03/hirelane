@@ -69,6 +69,65 @@ A static, public-facing landing page that requires no authentication. The page s
 
 ---
 
+## Phase 2.5: UI Foundation Setup (Shadcn/ui Integration)
+
+**User stories**: Foundation work for visual consistency (phases 3-14)
+
+### What to build
+
+Set up the UI foundation with shadcn/ui and updated design tokens:
+1. **Initialize shadcn/ui**: Run `pnpm dlx shadcn@latest init` with sky color theme, new-york style, slate base color
+2. **Update globals.css**: Apply new design tokens (sky blue primary #0ea5e9, system fonts, semantic colors)
+3. **Remove Geist font loading**: Simplify layout.tsx to use system font stack (SF Pro on Mac, Segoe UI on Windows)
+4. **Install core components**: button, input, label, form, card
+5. **Install feedback components**: toast (sonner), alert, skeleton, badge
+6. **Update landing page**: Verify renders correctly with new sky blue primary color
+
+### Acceptance criteria
+
+- [ ] `components.json` exists with correct configuration (style: new-york, baseColor: slate)
+- [ ] `src/components/ui/` directory contains core shadcn components
+- [ ] `globals.css` has sky blue primary (#0ea5e9) and semantic colors (success, warning, error, info)
+- [ ] System font stack configured (no Geist font loading, no external font requests)
+- [ ] Landing page renders correctly with new sky blue primary color
+- [ ] Button, Input, Label, Form, Card components are available for import
+- [ ] Toast, Alert, Skeleton, Badge components are available
+- [ ] `pnpm run build` passes without errors
+- [ ] Light/dark mode tokens correctly applied via prefers-color-scheme
+- [ ] Focus rings visible on all interactive elements (#0ea5e9)
+- [ ] Reduced motion preference respected (@media prefers-reduced-motion)
+
+### Configuration details
+
+**components.json settings:**
+```json
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/app/globals.css",
+    "baseColor": "slate"
+  },
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui"
+  }
+}
+```
+
+**Shadcn installation commands:**
+```bash
+pnpm dlx shadcn@latest init
+pnpm dlx shadcn@latest add button input label form card
+pnpm dlx shadcn@latest add toast alert skeleton badge
+```
+
+---
+
 ## Phase 3: Sign Up Flow (Email/Password)
 
 **User stories**: 4, 7 (partial: signup creates user with initial quota visibility)

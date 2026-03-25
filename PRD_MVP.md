@@ -217,6 +217,139 @@ Six core modules will be created, each following Clean Architecture principles:
 
 ---
 
+## UI Design System
+
+### Visual Philosophy
+
+Hirelane adopts a **minimalist and elegant** design aesthetic inspired by Apple, Linear, and Vercel:
+- **Clarity**: Clean layouts with purposeful whitespace
+- **Focus**: Subtle visual hierarchy guiding users through the workflow
+- **Professionalism**: A polished appearance that instills trust for job seekers
+
+### Component Library
+
+- **Library**: Shadcn/ui (accessible, copy-paste, customizable)
+- Built on Radix UI primitives for accessibility
+- Components copied into codebase (not a dependency)
+- Full TypeScript + Tailwind CSS integration
+
+### Color System
+
+#### Primary Colors
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-primary` | `#0ea5e9` (Sky 500) | Primary actions, links |
+| `--color-primary-hover` | `#0284c7` (Sky 600) | Hover states |
+| `--color-primary-content` | `#ffffff` | Text on primary |
+
+#### Semantic Colors
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--color-success` | `#22c55e` | Success states |
+| `--color-warning` | `#f59e0b` | Warnings |
+| `--color-error` | `#ef4444` | Errors, destructive |
+| `--color-info` | `#3b82f6` | Informational |
+
+#### Surface Colors
+| Token | Light | Dark | Usage |
+|-------|-------|------|-------|
+| `--color-surface` | `#ffffff` | `#171717` | Cards |
+| `--color-surface-hover` | `#f8fafc` | `#262626` | Hover |
+
+#### Text Colors
+| Token | Light | Dark |
+|-------|-------|------|
+| `--color-foreground` | `#0f172a` | `#f8fafc` |
+| `--color-foreground-muted` | `#64748b` | `#94a3b8` |
+| `--color-subtle` | `#94a3b8` | `#64748b` |
+
+### Typography
+
+**Font Stack**: System UI
+```css
+--font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+             "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+```
+
+| Size | Usage |
+|------|-------|
+| 12px | Captions |
+| 14px | Labels, secondary |
+| 16px | Body |
+| 20px | Section titles |
+| 24px | Page titles |
+| 30px | Hero headings |
+
+### Spacing & Border Radius
+
+**Spacing**: 4px base unit (4, 8, 12, 16, 24, 32, 48, 64px)
+
+**Border Radius**:
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--radius` | 6px | Buttons, inputs |
+| `--radius-lg` | 12px | Cards, modals |
+
+### Animations
+
+- **Transitions**: 150ms default, ease-out
+- **Hover**: Subtle shadow elevation
+- **Focus**: 2px ring with `--color-ring`
+- **Loading**: Skeleton placeholders with pulse
+
+### Icons
+
+- **Library**: Lucide Icons
+- **Sizes**: 16px (inline), 20px (buttons), 24px (standalone)
+
+### Component Specifications
+
+#### Buttons
+| Variant | Style | Usage |
+|---------|-------|-------|
+| Primary | Solid `--color-primary` | Main CTAs |
+| Secondary | Border + surface | Secondary actions |
+| Ghost | Transparent | Tertiary |
+| Destructive | Solid `--color-error` | Delete actions |
+
+#### Form Inputs
+- Labels above inputs
+- Height: 40px
+- Border: 1px, 2px ring on focus
+- Error: Red border + message below
+
+#### Feedback
+| Type | Pattern |
+|------|---------|
+| Actions | Toast notifications |
+| Validation | Inline messages |
+| Loading | Skeletons |
+
+#### Wizard UX
+- Horizontal steps at top
+- Numbered circles with connecting lines
+- Current: Primary fill
+- Completed: Checkmark
+- Future: Muted border
+
+### Accessibility
+
+- WCAG AA color contrast (4.5:1)
+- Focus rings on all interactive elements
+- Full keyboard navigation
+- Reduced motion support
+
+### Responsive Breakpoints
+
+| Name | Value |
+|------|-------|
+| sm | 640px |
+| md | 768px |
+| lg | 1024px |
+| xl | 1280px |
+
+---
+
 ## Testing Decisions
 
 ### **What Makes a Good Test**
