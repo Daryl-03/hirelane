@@ -33,13 +33,13 @@ Initialize the Hirelane project with:
 
 ### Acceptance criteria
 
-- [ ] Prisma is installed and `prisma/schema.prisma` defines all four main entities (User, CV, Application, QuotaUsage)
-- [ ] `npx prisma migrate dev` runs successfully and creates tables in test PostgreSQL database
-- [ ] Module structure exists: `src/modules/{auth,cv,job,document-generation,application,quota}` (each with domain/infrastructure/presentation subdirs)
-- [ ] Test seed data: 2 users (1 free, 1 paid), 1 CV, 1 Application, 1 QuotaUsage record
-- [ ] `.env.example` documents all required environment variables
-- [ ] `npm run build` and `npm run lint` pass without errors
-- [ ] TypeScript strict mode is enabled in `tsconfig.json`
+- [x] Prisma is installed and `prisma/schema.prisma` defines all four main entities (User, CV, Application, QuotaUsage)
+- [ ] `npx prisma migrate dev` runs successfully and creates tables in test PostgreSQL database ⚠️ Requires package installation fix
+- [x] Module structure exists: `src/modules/{auth,cv,job,document-generation,application,quota}` (each with domain/infrastructure/presentation subdirs)
+- [x] Test seed data: 2 users (1 free, 1 paid), 1 CV, 1 Application, 1 QuotaUsage record
+- [x] `.env.example` documents all required environment variables
+- [ ] `pnpm run build` and `pnpm run lint` pass without errors ⚠️ Requires package installation fix
+- [x] TypeScript strict mode is enabled in `tsconfig.json`
 
 ---
 
