@@ -59,13 +59,13 @@ A static, public-facing landing page that requires no authentication. The page s
 
 ### Acceptance criteria
 
-- [ ] Landing page is served at `/` and visually renders without errors
-- [ ] Page includes a clear value proposition (problem statement + solution)
-- [ ] Features section lists at least 5 key features with descriptions
-- [ ] Pricing section clearly shows Free (3 apps/month) vs Paid (unlimited) tiers
-- [ ] "Sign Up" button links to `/auth/signup`
-- [ ] Page is mobile-responsive (tested with viewport < 640px)
-- [ ] Page loads with no console errors or TypeScript warnings
+- [x] Landing page is served at `/` and visually renders without errors
+- [x] Page includes a clear value proposition (problem statement + solution)
+- [x] Features section lists at least 5 key features with descriptions
+- [x] Pricing section clearly shows Free (3 apps/month) vs Paid (unlimited) tiers
+- [x] "Sign Up" button links to `/auth/signup`
+- [x] Page is mobile-responsive (tested with viewport < 640px)
+- [ ] Page loads with no console errors or TypeScript warnings ⚠️ Testing blocked by package installation issues
 
 ---
 
